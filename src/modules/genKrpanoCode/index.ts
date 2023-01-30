@@ -16,11 +16,11 @@ export function getKrpanoXml(sceneXml: string) {
 
 export function getSceneXml(params: any): string {
     const {title, dirName, sceneName, type, levelConfig} = params
-    let xml = `<scene name="${sceneName}" title="${title}" onstart="" thumburl="/${dirName}/thumb.jpg" lat="" lng="" heading="">
+    let xml = `<scene name="${sceneName}" title="${title}" onstart="" thumburl="/file/${dirName}/thumb.jpg" lat="" lng="" heading="">
 
                 <view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
-                <preview url="/${dirName}/preview.jpg" />`
+                <preview url="/file/${dirName}/preview.jpg" />`
 
     xml += getImageXml(type, dirName, levelConfig)
 
@@ -46,7 +46,7 @@ export function getImageXml(type: EImageType, dirName: string, levelConfig?: ILe
  */
 export function getCubeXml(dirName: string) {
     return `<image>
-                <cube url="/${dirName}/pano_%s.jpg" />
+                <cube url="/file/${dirName}/pano_%s.jpg" />
             </image>`
 }
 
@@ -67,13 +67,13 @@ export function getTilesXml(dirName: string, isShort: boolean = false, levelConf
             multires.push(level.size)
         })
         xml = `<image>
-                  <cube url="/${dirName}/%s/l%l/%${V}/l%l_%s_%${V}_%${H}.jpg" multires="${multires.toString()}" />
+                  <cube url="/file/${dirName}/%s/l%l/%${V}/l%l_%s_%${V}_%${H}.jpg" multires="${multires.toString()}" />
                </image>`
     } else {
         xml = ` <image multires="true" tilesize="512" type="CUBE">`
         levelConfig && levelConfig.forEach(level => {
             xml += ` <level tiledimageheight="${level.size}" tiledimagewidth="${level.size}">
-                        <cube url="/${dirName}/%s/l${level.level}/%${V}/l${level.level}_%s_%${V}_%${H}.jpg" />
+                        <cube url="/file/${dirName}/%s/l${level.level}/%${V}/l${level.level}_%s_%${V}_%${H}.jpg" />
                     </level>`
         })
         xml += `</image>`
