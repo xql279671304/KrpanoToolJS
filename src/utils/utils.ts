@@ -139,13 +139,7 @@ export function gaussBlur(imgData: ImageData, sigma: number = 1.8): ImageData {
  * @param length 字符串长度
  */
 export function getUniqueId(length: number = 8) {
-    const str = '0123456789abcdefghijklmnopqrstuvwxyz'
-    let result = ''
-    for (let i = 0; i < length; i++) {
-        const id = Math.floor(Math.random() * str.length)
-        result += str[id]
-    }
-    return result || Math.random().toString(36).substr(2,8)
+    return new Date().getTime()
 }
 
 export function isMac() {
