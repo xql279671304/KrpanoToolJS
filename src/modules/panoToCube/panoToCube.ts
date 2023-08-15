@@ -43,7 +43,7 @@ export default class PanoToCube {
             this.cbReject = reject
 
             // Limit the maximum size on the windows
-            const winLinitSize = 10100
+            // const winLinitSize = 10100
 
             const img = new Image()
             img.src = URL.createObjectURL(this.imageFile)
@@ -52,11 +52,11 @@ export default class PanoToCube {
                 const {width, height} = img
                 this.canvas.width = width
                 this.canvas.height = height
-                if (isWin() && width > winLinitSize) {
-                    img?.remove()
-                    reject(false)
-                    return
-                }
+                // if (isWin() && width > winLinitSize) {
+                //     img?.remove()
+                //     reject(false)
+                //     return
+                // }
                 this.ctx.drawImage(img, 0, 0)
                 const data = this.ctx.getImageData(0, 0, width, height)
                 this.processImage(data)
